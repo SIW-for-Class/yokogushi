@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>ようこそ</h1>
+  <p class="lead">
+    困りごとを投稿し、一覧・詳細を見て、open/closed を切り替える最小アプリです。
+    HTML/CSS/JS/Python/DB/Linux を横串で観察するための素材。
+  </p>
+
+  <h2>最近の投稿</h2>
+  <div class="list">
+    {% for t in recent %}
+      <a class="card" href="{{ url_for('ticket_detail', ticket_id=t['id']) }}">
+        <div class="row">
+          <strong>#{{ t['id'] }} {{ t['title'] }}</strong>
+          <span class="pill {{ t['status'] }}">{{ t['status'] }}</span>
+        </div>
+        <div class="muted">{{ t['created_at'] }}</div>
+      </a>
+    {% else %}
+      <div class="card">まだ投稿がありません。</div>
+    {% endfor %}
+  </div>
+{% endblock %}
+

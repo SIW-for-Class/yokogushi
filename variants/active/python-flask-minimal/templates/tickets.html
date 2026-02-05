@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>一覧</h1>
+
+  <form class="card" method="get" action="{{ url_for('tickets') }}">
+    <div class="grid2">
+      <label>
+        検索（title/body）
+        <input name="q" placeholder="例：VirtualBox / SQL / nginx" value="{{ q }}">
+      </label>
+      <label>
+        ステータス
+        <select name="status">
+          <option value="all" {{ 'selected' if status=='all' else '' }}>all</option>
+          <option value="open" {{ 'selected' if status=='open' else '' }}>open</option>
+          <option value="closed" {{ 'selected' if status=='closed' else '' }}>closed</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn" type="submit">反映</button>
+  </form>
+
+  <div class="list">
+    {% for t in rows %}
+      <a class="card" href="{{ url_for('ticket_detail', ticket_id=t['id']) }}">
+        <div class="row">
+          <strong>#{{ t['id'] }} {{ t['title'] }}</strong>
+          <span class="pill {{ t['status'] }}">{{ t['status'] }}</span>
+        </div>
+        <div class="muted">
+          {{ t['created_at'] }} / {{ t['category'] }} / priority: {{ t['priority'] }}
+        </div>
+      </a>
+    {% else %}
+      <div class="card">該当する投稿がありません。</div>
+    {% endfor %}
+  </div>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>新規投稿</h1>
+
+  <form class="card" method="post" action="{{ url_for('create_ticket') }}">
+    <label>
+      タイトル（必須）
+      <input name="title" maxlength="80" required value="{{ (form.title if form else '') }}">
+    </label>
+
+    <label>
+      本文
+      <textarea name="body" rows="8" maxlength="2000">{{ (form.body if form else '') }}</textarea>
+    </label>
+
+    <div class="grid2">
+      <label>
+        カテゴリ
+        <select name="category">
+          {% set c = (form.category if form else 'general') %}
+          <option value="general" {{ 'selected' if c=='general' else '' }}>general</option>
+          <option value="linux" {{ 'selected' if c=='linux' else '' }}>linux</option>
+          <option value="db" {{ 'selected' if c=='db' else '' }}>db</option>
+          <option value="python" {{ 'selected' if c=='python' else '' }}>python</option>
+          <option value="web" {{ 'selected' if c=='web' else '' }}>web</option>
+        </select>
+      </label>
+
+      <label>
+        優先度
+        {% set p = (form.priority if form else 'normal') %}
+        <select name="priority">
+          <option value="low" {{ 'selected' if p=='low' else '' }}>low</option>
+          <option value="normal" {{ 'selected' if p=='normal' else '' }}>normal</option>
+          <option value="high" {{ 'selected' if p=='high' else '' }}>high</option>
+        </select>
+      </label>
+    </div>
+
+    <button class="btn" type="submit">投稿</button>
+  </form>
+{% endblock %}
+

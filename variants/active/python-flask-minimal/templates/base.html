@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Mini Support Desk" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <div class="container">
+      <div class="brand">
+        <a href="{{ url_for('index') }}">Mini Support Desk</a>
+        <span class="tag">学内ナレッジ（最小プロトタイプ）</span>
+      </div>
+      <nav class="nav">
+        <a href="{{ url_for('tickets') }}">一覧</a>
+        <a class="btn" href="{{ url_for('new_ticket') }}">新規投稿</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% if errors %}
+      <div class="card danger">
+        <strong>入力エラー</strong>
+        <ul>
+          {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <small>目的：完成ではなく「読む・壊す・直す・説明する」教材。</small>
+    </div>
+  </footer>
+</body>
+</html>
+

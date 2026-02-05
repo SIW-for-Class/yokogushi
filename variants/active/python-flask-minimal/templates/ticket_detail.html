@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>詳細</h1>
+
+  <div class="card" id="ticket" data-id="{{ t['id'] }}">
+    <div class="row">
+      <strong>#{{ t['id'] }} {{ t['title'] }}</strong>
+      <span class="pill {{ t['status'] }}" id="status">{{ t['status'] }}</span>
+    </div>
+
+    <div class="muted">
+      {{ t['created_at'] }} / {{ t['category'] }} / priority: {{ t['priority'] }}
+    </div>
+
+    <hr>
+
+    <pre class="body">{{ t['body'] }}</pre>
+
+    <div class="actions">
+      <button class="btn" id="toggle">open/closed 切替</button>
+      <a href="{{ url_for('tickets') }}">一覧へ戻る</a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='ticket.js') }}"></script>
+{% endblock %}
+
