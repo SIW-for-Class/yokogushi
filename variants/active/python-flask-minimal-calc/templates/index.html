@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card">
+  <h2>足し算フォーム</h2>
+
+  <form method="post" class="form">
+    <label>
+      A:
+      <input type="text" name="a" value="{{ a }}" inputmode="numeric" />
+    </label>
+
+    <label>
+      B:
+      <input type="text" name="b" value="{{ b }}" inputmode="numeric" />
+    </label>
+
+    <button type="submit">計算</button>
+  </form>
+
+  {% if error %}
+    <p class="error">入力エラー: {{ error }}</p>
+  {% endif %}
+
+  {% if result is not none %}
+    <p class="result">結果: <strong>{{ result }}</strong></p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>観察メモ</h2>
+  <ul>
+    <li>POSTするとサーバ側で <code>parse_int()</code> → 加算 → HTML生成</li>
+    <li>入力を変えると結果が変わる（状態はDBに残らない）</li>
+    <li>Linuxではプロセス/ポートを確認する</li>
+  </ul>
+</section>
+
+{% endblock %}
+
