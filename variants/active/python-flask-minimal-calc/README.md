@@ -1,4 +1,4 @@
-# python-flask-addition
+# python-flask-miimal-calc
 
 最小の「足し算」Webアプリ（yokogushiの観察対象）
 
