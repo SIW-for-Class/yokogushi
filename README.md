@@ -3,7 +3,7 @@
 Cross-disciplinary learning perspectives that connect Linux, databases, programming, and the web across subjects.
 
 
-このリポジトリは、教育目的で作られた **ナレッジスペースアプリの教材用プロジェクト**です。  
+このリポジトリは、教育目的で作られた **教材用プロジェクト**です。  
 完成品や本番運用を目的としたものではありません。
 
 ---
